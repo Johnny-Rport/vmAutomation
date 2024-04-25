@@ -60,6 +60,51 @@ fi
 #--
 SETF
 
+cat - >> ~/bin/for_loop << "SETLOOP"
+#!/bin/bash
+# for_loop
+# bash for_loop to run script
+
+#Give a sequence from 1 to 10
+LST=$(seq 1 10)
+for x in $LST
+ do
+	echo $x
+	sleep 1
+ done
+SETLOOP
+
+
+cat - >> ~/bin/stoplight << "SETIF"
+#!/bin/bash
+# stoplight
+# simple if test
+
+display_light () 
+{
+	case $1 in
+	  "red") echo "red light stop." ;;
+	  "yellow") echo "If cop slow, if not speed up" ;;
+	  "green") echo "green light go" ;;
+	  *) echo "can't";;
+	esac
+}
+
+#main
+while true
+do
+	echo -n "Enter a stoplight color all lower case -> "
+	read light
+	# [ is equal to cmd test
+	if [ $light == "q" ]
+	 then break
+	fi
+	display_light $light
+done
+SETIF
+
+# Enable both Stoplight and For_loop scripts
+chmod +x ~/bin/stoplight ~/bin/for_loop
 
 # enable the getty for ttyS0 (getty allows login)
 sudo systemctl enable serial-getty@ttyS0.service
@@ -76,3 +121,4 @@ Linux runs the world.
 Amazing for overwieght penguin.
 
 #--
+
