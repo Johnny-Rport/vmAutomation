@@ -1,0 +1,78 @@
+#!/bin/bash
+# mkstuff
+# create .funcs and .bash_aliases 
+# 
+echo "Did you create you $HOME/bin dir? "
+read X
+
+cat - > ~/.bash_aliases << "EOF"
+#.bash_aliases 
+export PATH="$HOME/bin:$HOME/inclass:$PATH" 
+alias h=' history'
+alias l=' ls -sailF --color=auto'
+alias la=' ls -A --color=auto'
+alias lc=' ls -CF --color=auto'
+alias ll=' ls -alF --color=auto'
+alias lr=' ls -rtlF --color=auto'
+EOF
+
+cat - > ~/.funcs << "FUN"
+whdr() {
+echo '<!DOCTYPE html><head><title>bash web</title></head><body><pre>'
+
+}
+wftr() {
+echo '</pre></body></html>'
+
+}
+calcit() {
+    printf "%s\n" "$@" | bc -lq ~/.bcrc  
+}
+FUN
+
+cat - > ~/.bcrc << BCRC
+scale=2
+BCRC
+
+cat -> ~/bin/upit << UPIT
+#!/bin/bash
+# upit
+#snap refresh
+sudo apt-get check
+sudo apt-get clean
+sudo apt-get -y autoclean
+sudo apt-get remove
+sudo apt-get -y autoremove
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
+uname -a
+cat /proc/version
+cat /etc/os-release
+#--
+UPIT
+chmod +x ~/bin/upit 
+
+cat - >> ~/.bashrc << SETF
+if [ -f ~/.funcs ]; then
+    . ~/.funcs
+fi
+#--
+SETF
+
+
+# enable the getty for ttyS0 (getty allows login)
+sudo systemctl enable serial-getty@ttyS0.service
+sudo systemctl start serial-getty@ttyS0.service
+sudo systemctl daemon-reload
+
+# install web server 
+sudo tasksel install web-server
+
+# multiline comments - unorthodox
+:<<'CMT'
+here docs are awesome!
+Linux runs the world.
+Amazing for overwieght penguin.
+
+#--

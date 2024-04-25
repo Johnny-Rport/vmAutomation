@@ -1,0 +1,17 @@
+#!/bin/bash
+# post_install
+sudo apt-get update && sudo apt-get upgrade -y
+# here is the install list 
+#inslst=$(cat tty3.lst)
+inslst=( a2ps aspell astyle autossh bsdutils bc \
+bind9-dnsutils bsdgames bsdmainutils bsdutils \
+build-essential byobu calendar coreutils cu dc \
+dialog ecl elinks fortune-mod fortunes gpm jq \
+links lua5.4 lynx mailutils minicom mutt ncat \
+newlisp nmap nvi pandoc pngphoon python3-pdfminer \
+rsync screen shellcheck sqlite3 sshfs tmux \
+util-linux vacation vifm vim-nox vim-scripts w3m whois )
+aptDepends=($inslst) 
+sudo apt-get install -y "${aptDepends[@]}"
+echo "Done."
+#--

@@ -1,0 +1,10 @@
+## KVM and Friends, run this to install and get a working virtual manager that works well
+# Only on linux
+
+sudo apt install -y qemu-kvm libvirt-clients virt-manager  
+sudo apt install -y libvirt-daemon-system bridge-utils virtinst libvirt-daemon  
+sudo apt install -y qemu qemu-kvm qemu-system qemu-utils  
+sudo usermod -aG libvirt tux  
+sudo usermod -aG libvirt-qemu tux 
+
+#--

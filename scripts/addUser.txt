@@ -1,0 +1,12 @@
+# addUser.sh
+#!/bin/bash
+# This is hte script you came up with to add users with default password and other stuff.
+#
+# Adding each user based on file
+
+for user in $(cat "$1" | cut -d"@" -f1)
+do
+	sudo adduser --disabled-password --comment "$user@gmail.com" "$user"
+	echo "$user:vm" | sudo chpasswd
+done
+

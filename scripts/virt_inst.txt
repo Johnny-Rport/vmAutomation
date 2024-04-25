@@ -1,0 +1,13 @@
+# this is the command line to 
+# build a base deb12 guest on
+# the kvm server 
+
+sudo virt-install \
+--os-variant debian12 \
+--name deb12sp24 \
+--memory 8096 \
+--vcpus 4 \
+--disk size=22 \
+--cdrom debian-12.1.0-amd64-netinst.iso  
+
+#--

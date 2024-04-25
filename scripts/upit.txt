@@ -1,0 +1,25 @@
+# upit.txt
+# in case sudo is not available
+# switch to root su - 
+# mkdir bin (for root) 
+# create this file 
+
+#!/bin/bash
+# upit 
+# /root/bin/upit
+apt-get check
+apt clean
+apt -y autoclean
+apt remove
+apt -y autoremove
+apt update
+apt -y upgrade
+apt -y dist-upgrade
+cat /proc/version
+cat /etc/os-release
+uname -a
+#--
+
+apt install sudo (for tux to sudo)
+usermod -aG sudo tux
+apt install build-essential (for compilers) 
